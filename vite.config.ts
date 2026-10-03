@@ -31,6 +31,9 @@ export default defineConfig({
   plugins: [react(), syntaraApi(), staticProductPages()],
   server: {
     port: 5173,
-    host: '127.0.0.1'
+    host: '127.0.0.1',
+  },
+  preview: {
+    allowedHosts: ['syntara-0c72.onrender.com'],
   }
 });
