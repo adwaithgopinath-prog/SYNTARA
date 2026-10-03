@@ -5,6 +5,10 @@
   const form = $('.client-form');
   const grid = $('#client-grid');
   const openButtons = document.querySelectorAll('[data-open-client-form]');
+  const dataNote = $('#agency-data-note');
+  if (dataNote && !['localhost', '127.0.0.1'].includes(location.hostname)) {
+    dataNote.textContent = 'Render Free storage is temporary · use sample data only';
+  }
   let clients = [];
   let campaigns = [];
   let results = [];

@@ -1,6 +1,8 @@
 node_modules/
 dist/
 .fieldnote/
+.syntara/
+.syntara/
 .env*
 !.env.example
 *.log

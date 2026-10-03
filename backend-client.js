@@ -58,7 +58,7 @@
     const panel = document.createElement('aside');
     panel.className = 'backend-status-panel';
     panel.hidden = true;
-    panel.innerHTML = '<div class="backend-panel-head"><div><small>SYNTARA WORKSPACE</small><b>Local data store</b></div><button type="button" aria-label="Close workspace status">×</button></div><p class="backend-panel-status">Connecting to the workspace API…</p><div class="backend-panel-summary"></div><small class="backend-panel-foot">Changes are saved on this device. External publishing stays disabled.</small>';
+    panel.innerHTML = '<div class="backend-panel-head"><div><small>SYNTARA WORKSPACE</small><b>Workspace data</b></div><button type="button" aria-label="Close workspace status">×</button></div><p class="backend-panel-status">Connecting to the workspace API…</p><div class="backend-panel-summary"></div><small class="backend-panel-foot">External publishing stays disabled.</small>';
     host.append(button, panel);
     panel.querySelector('.backend-panel-head button').addEventListener('click', () => {
       panel.hidden = true;

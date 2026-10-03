@@ -1,11 +1,11 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import vm from 'node:vm';
-import { randomUUID } from 'node:crypto';
+import { randomUUID, timingSafeEqual } from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const STORE_DIR = path.join(ROOT, '.fieldnote');
+const STORE_DIR = process.env.SYNTARA_DATA_DIR || path.join(ROOT, '.fieldnote');
 const STORE_FILE = path.join(STORE_DIR, 'workspace.json');
 const DATA_FILE = path.join(ROOT, 'data.js');
 const MAX_BODY_BYTES = 128 * 1024;
@@ -117,7 +117,8 @@ async function route(req, res) {
     return res.end();
   }
   if (method === 'GET' && pathname === '/api/health') {
-    return json(res, 200, { ok: true, service: 'syntara-local-workspace', storage: 'persistent-json' });
+    const storage = process.env.SYNTARA_DATA_DIR ? 'persistent-json' : process.env.RENDER ? 'ephemeral-json' : 'local-json';
+    return json(res, 200, { ok: true, service: 'syntara-workspace', storage });
   }
   if (method === 'GET' && pathname === '/api/state') return json(res, 200, await readState());
 
@@ -445,6 +446,31 @@ function middleware(req, res, next) {
   });
 }
 
+function accessGate(req, res, next) {
+  if (process.env.SYNTARA_REQUIRE_AUTH !== 'true') return next();
+
+  const pathname = (req.url || '/').split('?')[0];
+  if (pathname === '/api/health') return next();
+
+  const password = process.env.SYNTARA_ACCESS_PASSWORD;
+  if (!password) {
+    res.statusCode = 503;
+    res.setHeader('Content-Type', 'text/plain; charset=utf-8');
+    return res.end('Workspace access is not configured.');
+  }
+
+  const expected = Buffer.from(`Basic ${Buffer.from(`syntara:${password}`).toString('base64')}`);
+  const supplied = Buffer.from(req.headers.authorization || '');
+  const authorized = supplied.length === expected.length && timingSafeEqual(supplied, expected);
+  if (!authorized) {
+    res.statusCode = 401;
+    res.setHeader('WWW-Authenticate', 'Basic realm="SYNTARA preview", charset="UTF-8"');
+    return res.end('Sign in to access the SYNTARA workspace.');
+  }
+
+  next();
+}
+
 export function syntaraApi() {
   return {
     name: 'syntara-local-api',
@@ -452,6 +478,7 @@ export function syntaraApi() {
       server.middlewares.use(middleware);
     },
     configurePreviewServer(server) {
+      server.middlewares.use(accessGate);
       server.middlewares.use(middleware);
     },
   };

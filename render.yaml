@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: syntara
+    runtime: node
+    plan: free
+    branch: main
+    buildCommand: npm ci --include=dev && npm run build
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: SYNTARA_REQUIRE_AUTH
+        value: "true"
+      - key: SYNTARA_ACCESS_PASSWORD
+        generateValue: true

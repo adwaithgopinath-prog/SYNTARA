@@ -13,6 +13,12 @@ Open `http://127.0.0.1:5173/`. The Vite server provides the local workspace API 
 
 Use `npm run build` to build the home page and the dedicated product pages. `npm run preview` serves the built site and the local API for a local preview. A static production host needs a persistent API host configured separately.
 
+## Render preview
+
+The included `render.yaml` deploys a password-protected Node web service from the `main` branch. In Render, create a Blueprint from this repository. The browser asks for HTTP Basic Auth; use `syntara` as the username and the generated `SYNTARA_ACCESS_PASSWORD` from the service's Environment page as the password.
+
+The Blueprint uses Render's Free plan, whose filesystem is temporary. The Clients page warns visitors to use sample data only. Do not enter real client information until durable storage and individual team accounts are configured. For a paid persistent disk, mount it at `/var/data` and set `SYNTARA_DATA_DIR=/var/data`.
+
 ## Structure
 
 - `index.html` — immersive React/WebGL product story
