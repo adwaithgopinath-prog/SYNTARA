@@ -9,7 +9,7 @@ npm install
 npm run dev
 ```
 
-Open `http://127.0.0.1:5173/`. The Vite server provides the local workspace API under `/api` and saves changes to `.fieldnote/workspace.json`. The file is created on the first saved change and persists between page loads and restarts.
+Open `http://127.0.0.1:5173/`. The Vite server provides the local workspace API under `/api` and saves changes to a persistent local JSON file. The file is created on the first saved change and persists between page loads and restarts.
 
 Use `npm run build` to build the home page and the dedicated product pages. `npm run preview` serves the built site and the local API for a local preview. A static production host needs a persistent API host configured separately.
 
