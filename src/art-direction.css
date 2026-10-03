@@ -1,0 +1,287 @@
+/* SYNTARA / editorial art direction */
+:root {
+  --bg-ink: #0b0c0d;
+  --signal-orange: #c8a873;
+  --signal-amber: #b8ce72;
+  --signal-emerald: #b8ce72;
+  --field-olive: #b8ce72;
+  --paper: #f2eee4;
+  --muted: #aaa69c;
+  --surface: #171819;
+  --card-bg: #131516;
+  --card-border: #373838;
+}
+
+.scene-panel {
+  isolation: isolate;
+}
+
+.scene-panel::after {
+  content: "SCENE " attr(data-index) " / 17 · SYNTARA INTELLIGENCE";
+  position: absolute;
+  right: clamp(1rem, 3vw, 3rem);
+  bottom: clamp(1rem, 2.5vh, 2rem);
+  color: rgba(242, 238, 228, .34);
+  font: 9px/1.2 'JetBrains Mono', monospace;
+  letter-spacing: .16em;
+  pointer-events: none;
+}
+
+.scene-content--framed > div[class*="glass-panel"] {
+  position: relative;
+  width: min(100%, 31rem);
+  padding: clamp(1.25rem, 2.2vw, 2rem);
+  overflow: visible;
+  background: #141515;
+  border: 1px solid rgba(242, 238, 228, .13);
+  border-top: 1px solid rgba(242, 238, 228, .34);
+  border-left: 2px solid #8e7357;
+  border-radius: 1px;
+  box-shadow: 0 26px 80px rgba(0, 0, 0, .35);
+}
+
+.scene-content--framed > div[class*="glass-panel-accent"] {
+  border-left-color: var(--signal-orange);
+  background: linear-gradient(135deg, rgba(31, 21, 17, .97), rgba(15, 15, 15, .95));
+}
+
+.scene-content--framed > div[class*="glass-panel-amber"] {
+  border-left-color: var(--signal-amber);
+  background: linear-gradient(135deg, rgba(25, 27, 21, .97), rgba(15, 16, 15, .95));
+}
+
+.scene-content--framed > div[class*="glass-panel"]::before {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: 1.15rem;
+  width: 2.6rem;
+  height: 2px;
+  background: var(--signal-orange);
+}
+
+.scene-content--framed > div[class*="glass-panel"] > .signal-tag:first-child {
+  margin-bottom: .1rem;
+}
+
+.scene-content--framed h2,
+.scene-content--framed h3 {
+  text-wrap: balance;
+}
+
+.scene-content--framed .headline-sm-fluid {
+  font-size: clamp(1.9rem, 2.55vw, 2.4rem);
+  line-height: .98;
+  letter-spacing: -.05em;
+}
+
+.scene-content--framed p {
+  max-width: 42ch;
+}
+
+.scene-content--framed .rounded-2xl,
+.scene-content--framed .rounded-xl,
+.scene-content--framed .rounded-lg {
+  border-radius: 1px;
+}
+
+.scene-content--framed button,
+.scene-content--framed a {
+  border-radius: 1px;
+}
+
+.scene-content--framed .metric-card {
+  min-width: 7.5rem;
+}
+
+.scene-content--open {
+  max-width: min(100vw, 76rem);
+  width: min(100%, 76rem);
+}
+
+.scene-content--open h1,
+.scene-content--open h2 {
+  text-shadow: 0 3px 42px rgba(0, 0, 0, .58);
+  text-wrap: balance;
+}
+
+.feedback-headline {
+  font-size: clamp(3.6rem, 7.4vw, 7.2rem);
+  line-height: .9;
+  letter-spacing: -.07em;
+}
+
+.scene-content--open p {
+  text-shadow: 0 2px 18px rgba(0, 0, 0, .85);
+}
+
+.scene-content--open .signal-tag {
+  padding: .45rem .65rem;
+  background: rgba(11, 12, 13, .76);
+}
+
+.scene-content .signal-tag {
+  line-height: 1.6;
+}
+
+.scene-content .live-pulse {
+  flex: 0 0 auto;
+}
+
+.scene-content--framed [class*="bg-ink-"] {
+  background-color: rgba(10, 11, 11, .72);
+}
+
+.scene-content--framed [class*="border-white/"] {
+  border-color: rgba(242, 238, 228, .12);
+}
+
+.scene-panel-77 .signal-convergence {
+  display: grid;
+  gap: .35rem;
+}
+
+.scene-panel-77 .signal-convergence > div:not(.convergence-result) {
+  display: grid;
+  grid-template-columns: 1.5rem 1fr auto;
+  align-items: center;
+  gap: .7rem;
+  padding: .4rem 0;
+  border-bottom: 1px solid rgba(242, 238, 228, .12);
+}
+
+.signal-convergence i,
+.autopilot-steps i {
+  color: var(--signal-orange);
+  font: normal 10px 'JetBrains Mono', monospace;
+}
+
+.signal-convergence span {
+  color: var(--muted);
+}
+
+.signal-convergence b {
+  color: var(--paper);
+  font: 500 10px 'JetBrains Mono', monospace;
+}
+
+.signal-convergence .convergence-result {
+  display: flex;
+  gap: .7rem;
+  align-items: baseline;
+  padding: .6rem 0 0 2.2rem;
+  color: var(--paper);
+  font: 600 12px/1.4 'Inter', sans-serif;
+}
+
+.autopilot-steps {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  border-top: 1px solid rgba(242, 238, 228, .22);
+}
+
+.autopilot-steps > div {
+  min-width: 0;
+  padding: .7rem .55rem .3rem;
+  border-right: 1px solid rgba(242, 238, 228, .12);
+}
+
+.autopilot-steps > div:last-child {
+  border-right: 0;
+}
+
+.autopilot-steps b {
+  display: block;
+  margin-top: .35rem;
+  color: var(--signal-orange);
+  font: 500 9px/1.4 'JetBrains Mono', monospace;
+}
+
+.autopilot-steps span {
+  display: block;
+  color: var(--paper);
+  font-size: 11px;
+  line-height: 1.35;
+}
+
+.autopilot-steps i {
+  display: block;
+  margin-bottom: .35rem;
+}
+
+.autopilot-steps .autopilot-ready {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  padding: .65rem .55rem 0;
+  border-top: 1px solid rgba(242, 238, 228, .15);
+  border-right: 0;
+}
+
+.autopilot-steps .autopilot-ready span {
+  color: var(--signal-emerald);
+  font: 10px 'JetBrains Mono', monospace;
+}
+
+.autopilot-steps .autopilot-ready b {
+  margin: 0;
+  color: var(--muted);
+  text-align: right;
+}
+
+/* Keep the spatial subject clear on tablet widths by lowering the reading panel. */
+@media (min-width: 641px) and (max-width: 1100px) {
+  .scene-breadcrumb {
+    display: none;
+  }
+
+  .scene-panel:has(.scene-content--framed) {
+    justify-content: flex-end;
+    padding-bottom: 1.75rem;
+  }
+
+  .scene-content--framed > div[class*="glass-panel"] {
+    width: min(23rem, calc(100vw - 2rem));
+  }
+
+  .scene-panel::after {
+    top: 4.5rem;
+    bottom: auto;
+  }
+}
+
+@media (max-width: 640px) {
+  .scene-panel::after {
+    font-size: 8px;
+    right: 1rem;
+    bottom: .75rem;
+  }
+
+  .scene-content--framed > div[class*="glass-panel"] {
+    width: min(calc(100vw - 2rem), 31rem);
+    padding: 1.2rem;
+  }
+
+  .scene-content--open .rounded-full {
+    border-radius: 1px;
+  }
+
+  .scene-content--framed p {
+    font-size: .82rem;
+  }
+
+  .scene-panel-77 .signal-convergence > div:not(.convergence-result) {
+    grid-template-columns: 1.25rem 1fr auto;
+    gap: .4rem;
+  }
+
+  .autopilot-steps > div {
+    padding-inline: .35rem;
+  }
+
+  .autopilot-steps span {
+    font-size: 9px;
+  }
+}

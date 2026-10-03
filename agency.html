@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101110"><meta name="description" content="Keep client goals, campaign work, reviews, and results together in one agency workspace.">
+  <title>Syntara — Client Portfolio</title>
+  <link rel="stylesheet" href="styles.css"><link rel="stylesheet" href="agency.css">
+</head>
+<body data-page="agency">
+  <header class="topbar">
+    <a class="wordmark" href="index.html" aria-label="Syntara home"><span class="mark">S.</span> SYNTARA</a>
+    <nav aria-label="Main navigation">
+      <a href="agency.html" aria-current="page">Clients</a>
+      <a href="opportunities.html">Opportunities</a>
+      <a href="campaigns.html">Campaigns</a>
+      <a href="performance.html">Reports</a>
+    </nav>
+    <div class="nav-actions">
+      <a href="#add-client" class="button button-small">Add a client <span>＋</span></a>
+    </div>
+    <button class="menu-button" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+  </header>
+
+  <main class="agency-shell">
+    <section class="agency-hero">
+      <div>
+        <p class="eyebrow"><i></i> AGENCY WORKSPACE · CLIENT PORTFOLIO</p>
+        <h1>Every client.<br><em>One clear next move.</em></h1>
+        <p class="agency-lede">Keep account goals, campaign drafts, reviews, and measured results together. Start with a client; the rest of the work stays attached to that account.</p>
+        <div class="agency-actions">
+          <a href="#add-client" class="button">Add your first client <span>↗</span></a>
+          <span>Saved on this device · no client data is shared</span>
+        </div>
+      </div>
+      <aside class="agency-promise">
+        <span>ONE ACCOUNT AT A TIME</span>
+        <div class="agency-flow"><b>Client</b><i>→</i><b>Campaign</b><i>→</i><b>Review</b></div>
+        <p>Client records organize your work. Market examples remain labeled as samples until a real data source is connected.</p>
+      </aside>
+    </section>
+
+    <section class="portfolio-stats" aria-label="Portfolio summary">
+      <div><small>ACTIVE CLIENTS</small><b id="stat-clients">—</b></div>
+      <div><small>CAMPAIGNS TO REVIEW</small><b id="stat-reviews">—</b></div>
+      <div><small>RESULTS RECORDED</small><b id="stat-results">—</b></div>
+      <p id="portfolio-updated">Loading your local workspace…</p>
+    </section>
+
+    <section class="portfolio-section" aria-labelledby="portfolio-title">
+      <div class="portfolio-heading">
+        <div><p class="eyebrow">YOUR ACCOUNTS</p><h2 id="portfolio-title">Client portfolio</h2></div>
+        <button class="button button-small" type="button" data-open-client-form>Add client <span>＋</span></button>
+      </div>
+
+      <form class="client-form" id="add-client" hidden>
+        <div class="client-form-heading"><div><small>ACCOUNT SETUP</small><h3 id="client-form-title">Add a client</h3></div><button class="client-form-close" type="button" aria-label="Close client form">×</button></div>
+        <input type="hidden" name="id">
+        <label>Client name<input name="name" required maxlength="120" placeholder="e.g. Northstar Coffee"></label>
+        <label>Industry<input name="industry" maxlength="120" placeholder="e.g. Food & beverage"></label>
+        <label>Main business goal<input name="goal" maxlength="240" placeholder="e.g. Increase qualified online orders"></label>
+        <label>Target audience<input name="audience" maxlength="180" placeholder="Who does this account need to reach?"></label>
+        <label>Services you provide<input name="services" maxlength="180" placeholder="e.g. Paid social, content, SEO"></label>
+        <label>Account lead<input name="owner" maxlength="120" placeholder="Who owns the relationship?"></label>
+        <label>Website<input name="website" maxlength="240" placeholder="https://example.com"></label>
+        <div class="client-form-actions"><button class="button button-small" type="submit">Save client <span>↗</span></button><button class="quiet-button" type="button" data-cancel-client>Cancel</button></div>
+        <p class="client-form-note">Use real account details. They stay in this local workspace file.</p>
+      </form>
+
+      <div class="client-grid" id="client-grid" aria-live="polite"></div>
+      <section class="client-empty" id="client-empty" hidden>
+        <span class="empty-mark">＋</span>
+        <h3>Your portfolio starts with a client.</h3>
+        <p>Add an account and its goal. Then create campaign drafts and log real outcomes against that client.</p>
+        <button class="button button-small" type="button" data-open-client-form>Add your first client <span>↗</span></button>
+      </section>
+
+      <details class="archived-clients" id="archived-clients" hidden>
+        <summary>Archived clients <span id="archived-count"></span></summary>
+        <div class="archived-client-list" id="archived-client-list"></div>
+      </details>
+    </section>
+
+    <section class="agency-bottom-note">
+      <span>BUILT AROUND CLIENT WORK</span>
+      <p>Pick an account to see its campaign drafts and recorded outcomes. Bring in real source data before making a recommendation; this prototype does not connect to ad or social platforms.</p>
+    </section>
+  </main>
+
+  <footer class="footer"><a class="wordmark" href="index.html"><span class="mark">S.</span> SYNTARA</a><span>ONE CLIENT · ONE SHARED WORKING VIEW</span><div><a href="agency.html">Clients</a><a href="campaigns.html">Campaigns</a><a href="performance.html">Reports</a><span>© 2026 SYNTARA</span></div></footer>
+  <div class="toast" role="status" aria-live="polite"></div>
+  <script src="backend-client.js"></script>
+  <script src="agency.js"></script>
+</body>
+</html>

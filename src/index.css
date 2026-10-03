@@ -1,0 +1,292 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─────────────────────────────────────────────
+   DESIGN TOKENS
+─────────────────────────────────────────────── */
+:root {
+  --bg-ink: #0b0c0d;
+  --signal-orange: #c8a873;
+  --signal-amber: #b8ce72;
+  --signal-emerald: #b8ce72;
+  --field-olive: #b8ce72;
+  --paper: #f4f1e8;
+  --muted: #8e8b84;
+  --surface: #151719;
+  --card-bg: rgba(14, 16, 17, 0.94);
+  --card-border: #292b2d;
+}
+
+/* ─────────────────────────────────────────────
+   BASE RESET
+─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background-color: var(--bg-ink);
+  color: var(--paper);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overscroll-behavior: none;
+}
+
+/* ─────────────────────────────────────────────
+   FONT UTILITIES
+─────────────────────────────────────────────── */
+.font-display  { font-family: 'Space Grotesk', sans-serif; }
+.font-serif    { font-family: 'Newsreader', Georgia, serif; }
+.font-editorial{ font-family: 'Newsreader', Georgia, serif; }
+.font-mono-code{ font-family: 'JetBrains Mono', 'Fira Code', monospace; }
+
+/* ─────────────────────────────────────────────
+   GLASS PANELS
+─────────────────────────────────────────────── */
+.glass-panel {
+  background: var(--card-bg);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border: 1px solid var(--card-border);
+  border-left: 2px solid #635b4b;
+  border-radius: 0;
+  box-shadow: inset 0 1px rgba(255,255,255,.025), 0 24px 80px rgba(0,0,0,.32);
+}
+
+.glass-panel-accent {
+  background: rgba(200, 168, 115, 0.06);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border: 1px solid rgba(200, 168, 115, 0.24);
+  border-left: 2px solid var(--signal-orange);
+  border-radius: 0;
+  box-shadow: inset 0 1px rgba(255,255,255,.025), 0 24px 80px rgba(0,0,0,.32);
+}
+
+.glass-panel-amber {
+  background: rgba(245, 158, 11, 0.06);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border: 1px solid rgba(184, 206, 114, 0.26);
+  border-left: 2px solid var(--signal-amber);
+  border-radius: 0;
+  box-shadow: inset 0 1px rgba(255,255,255,.025), 0 24px 80px rgba(0,0,0,.32);
+}
+
+/* ─────────────────────────────────────────────
+   VIGNETTE & NOISE
+─────────────────────────────────────────────── */
+.vignette {
+  pointer-events: none;
+  background: radial-gradient(ellipse at 52% 48%, transparent 62%, rgba(11, 12, 13, 0.32) 100%);
+}
+
+.noise-overlay {
+  pointer-events: none;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 256px 256px;
+}
+
+/* ─────────────────────────────────────────────
+   CUSTOM SCROLLBAR
+─────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: #080a09; }
+::-webkit-scrollbar-thumb {
+  background: #1e2822;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover { background: var(--signal-orange); }
+
+/* ─────────────────────────────────────────────
+   KEYFRAME ANIMATIONS
+─────────────────────────────────────────────── */
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fade-in-fast {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slide-in-right {
+  from { opacity: 0; transform: translateX(32px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes pulse-ring {
+  0%   { transform: scale(1);   opacity: 0.85; }
+  100% { transform: scale(1.5); opacity: 0; }
+}
+
+@keyframes data-flow {
+  0%   { stroke-dashoffset: 100; opacity: 0; }
+  20%  { opacity: 1; }
+  100% { stroke-dashoffset: 0;   opacity: 0.6; }
+}
+
+@keyframes ticker-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+@keyframes orbit-slow {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* ─────────────────────────────────────────────
+   ANIMATION CLASSES
+─────────────────────────────────────────────── */
+.animate-fade-in        { animation: fade-in 0.45s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.animate-fade-in-fast   { animation: fade-in-fast 0.22s ease both; }
+.animate-slide-up       { animation: slide-up 0.5s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.animate-slide-in-right { animation: slide-in-right 0.4s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.animate-orbit-slow     { animation: orbit-slow 18s linear infinite; }
+
+.animate-delay-100 { animation-delay: 0.10s; }
+.animate-delay-200 { animation-delay: 0.20s; }
+.animate-delay-300 { animation-delay: 0.30s; }
+.animate-delay-400 { animation-delay: 0.40s; }
+.animate-delay-500 { animation-delay: 0.50s; }
+
+/* ─────────────────────────────────────────────
+   LIVE / PULSE INDICATORS
+─────────────────────────────────────────────── */
+.live-pulse {
+  position: relative;
+  display: inline-flex;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--signal-orange);
+}
+
+.live-pulse::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 1px solid var(--signal-orange);
+  animation: pulse-ring 1.8s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+/* ─────────────────────────────────────────────
+   TYPOGRAPHY ENHANCEMENTS
+─────────────────────────────────────────────── */
+.text-muted   { color: var(--muted); }
+.text-paper   { color: var(--paper); }
+
+/* Clamp fluid headline size */
+.headline-fluid {
+  font-size: clamp(3.1rem, 8.8vw, 8.8rem);
+  line-height: .91;
+  letter-spacing: -.065em;
+  font-weight: 400;
+}
+
+.headline-sm-fluid {
+  font-size: clamp(2.35rem, 4.8vw, 4.35rem);
+  line-height: .98;
+  letter-spacing: -.055em;
+  font-weight: 400;
+}
+
+/* ─────────────────────────────────────────────
+   SIGNAL CHIP / TAGS
+─────────────────────────────────────────────── */
+.signal-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0;
+  border-radius: 0;
+  background: transparent;
+  border: 0;
+  border-left: 1px solid var(--signal-orange);
+  padding-left: 9px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--signal-orange);
+}
+
+.signal-tag-emerald {
+  background: transparent;
+  border-color: var(--signal-emerald);
+  color: var(--signal-emerald);
+}
+
+.signal-tag-amber {
+  background: transparent;
+  border-color: var(--signal-amber);
+  color: var(--signal-amber);
+}
+
+/* ─────────────────────────────────────────────
+   METRIC CALLOUT CARDS
+─────────────────────────────────────────────── */
+.metric-card {
+  padding: 10px 14px 10px 0;
+  border-radius: 0;
+  background: transparent;
+  border: 0;
+  border-top: 1px solid #3a3b38;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.metric-card .metric-label {
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  display: block;
+  margin-bottom: 3px;
+}
+
+.metric-card .metric-value {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--paper);
+}
+
+/* ─────────────────────────────────────────────
+   REDUCED MOTION
+─────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .animate-fade-in,
+  .animate-slide-up,
+  .animate-slide-in-right,
+  .animate-orbit-slow {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* ─────────────────────────────────────────────
+   MOBILE ADJUSTMENTS
+─────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .glass-panel { backdrop-filter: none; }
+}
