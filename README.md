@@ -15,7 +15,7 @@ Use `npm run build` to build the home page and the dedicated product pages. `npm
 
 ## Render preview
 
-The included `render.yaml` deploys a password-protected Node web service from the `main` branch. In Render, create a Blueprint from this repository. The browser asks for HTTP Basic Auth; use `syntara` as the username and the generated `SYNTARA_ACCESS_PASSWORD` from the service's Environment page as the password.
+The included `render.yaml` deploys a publicly accessible Node web service from the `main` branch. In Render, create a Blueprint from this repository. Anyone with the service URL can open the site without a login.
 
 The Blueprint uses Render's Free plan, whose filesystem is temporary. The Clients page warns visitors to use sample data only. Do not enter real client information until durable storage and individual team accounts are configured. For a paid persistent disk, mount it at `/var/data` and set `SYNTARA_DATA_DIR=/var/data`.
 
